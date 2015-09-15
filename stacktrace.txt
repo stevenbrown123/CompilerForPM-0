@@ -18,7 +18,7 @@ Line	OP	L	M
 16 	sio	0	3
 
 				pc	bp	sp	stack
-Initial values   0	1	0	
+Initial values  0	1	0	
  0	jmp	0	10	10	1	0	
 10	inc	0	6	11	1	6	0 0 0 0 0 0
 11	lit	0	3	12	1	7	0 0 0 0 0 0 3

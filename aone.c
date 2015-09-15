@@ -66,7 +66,7 @@ void readInstructions()
     }
     
     // open the file with the code in it for reading, always be "mcode.txt"
-    FILE *f = fopen("mcode-arithmetic.txt", "r");
+    FILE *f = fopen("mcode.txt", "r");
     
     // these three integers represent the opcode(o), the level(l), and var(m)
     int o, l, m;
@@ -273,7 +273,7 @@ void execute(instr i)
         default:
             return;
     }
-    fprintf(output, "%-2d  %-2d  %-2d  ", pc, bp, sp);
+    fprintf(output, "%-2d\t%-2d\t%-2d\t", pc, bp, sp);
     int p = 1;
     for(; p <= sp; p++)
     {
@@ -293,10 +293,10 @@ void printInstructions()
         return;
     }
     int spot = 0;
-    fprintf(output, "Line  OP   L   M\n");
+    fprintf(output, "Line\tOP\tL\tM\n");
     while(spot < length)
     { 
-        fprintf(output, "%2d  %s   %-2d %2d\n", spot, codes[i[spot].OP], i[spot].L, i[spot].M);
+        fprintf(output, "%2d\t%s\t%-2d\t%-2d\n", spot, codes[i[spot].OP], i[spot].L, i[spot].M);
         spot++;
     }
 }
@@ -305,7 +305,7 @@ void printstack()
 {
     const char *codes[] = {"fet", "lit", "opr", "lod", "sto", "cal", "inc", "jmp", "jpc", "sio", "sio", "sio"};
     int spot = 0;
-    fprintf(output, "%2d  %s %d   %-2d  ", pc, codes[i[pc].OP], i[pc].L, i[pc].M);
+    fprintf(output, "%2d\t%s\t%d\t%-2d\t", pc, codes[i[pc].OP], i[pc].L, i[pc].M);
 }
 
 int main()
@@ -328,8 +328,8 @@ int main()
     
     // print a header for the stack trace in the output file
     fprintf(output, "\n");
-    fprintf(output, "				pc  bp  sp  stack\n");
-    fprintf(output, "Initial values  0   1   0\n");
+    fprintf(output, "\t\t\t\tpc  bp  sp  stack\n");
+    fprintf(output, "Initial values\t0\t1\t0\n");
 
     // loop through the code store and keep going until halt is called and the
     // the halt flag is set to true    
